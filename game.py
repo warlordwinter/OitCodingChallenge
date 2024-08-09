@@ -3,6 +3,7 @@ class Game():
     def __init__(self, current_player, board = None):
         self.current_player = current_player
         self.board = board
+        avaliable_moves = {("A",1),("A",2),("A",3),("B",1),("B",2),("B",3),("A",1),("A",2),("A",3)}
     
     def get_current_player(self):
         """Gets the current player"""
@@ -11,3 +12,14 @@ class Game():
     def set_current_player(self, player):
         """Sets the current player"""
         self.current_player = player
+    
+    def get_available_moves(self):
+        """Gets the available moves"""
+        return self.avaliable_moves
+    
+    def make_move(self):
+        """Makes a move on the board"""
+        if self.current_player == "Player":
+            row_cordinate = input("Insert the Row Cordinate ex: A,B,C: " )
+            column_cordinate = input("Insert the Column Cordinate ex: 1,2,3: " )
+            print(row_cordinate,column_cordinate)
