@@ -18,4 +18,8 @@ I finished all of the project expect for the Tie game part. However, If I had 15
 
 Thanks for the Project! I had a great Time. I hope that we get to meet in person soon! 
 
+## Thought Process
+
+I spent a ton of time working on test based coding. Testing one part at a time until it was all good. This combined with Psydo Code led to my success!
+
 ### Total Time Spent **6 hours**
