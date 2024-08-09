@@ -68,6 +68,9 @@ class Game():
         if self.current_player == "Player":
             potential_winner = self.get_current_player()
             potential_winner.get_winner()
+        else:
+            potential_winner = self.get_current_player()
+            potential_winner.get_winner()
 
 
     
@@ -91,10 +94,11 @@ class Game():
                 row_cordinate = self.convert_letters_to_nums(row_cordinate)
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
                 self.current_player ="Computer"
+
         else:
             moves =self.get_available_moves() #The computer will randomly grab a move and store it in it's taken moves list
             index = randint(0,len(moves))
-            chosen_move = moves[index]
+            chosen_move = moves[index-1]
             row_cordinate = chosen_move[0]
             column_cordinate = chosen_move[1]
             moves.remove([row_cordinate,column_cordinate])
@@ -105,6 +109,7 @@ class Game():
             cordinate_pair= [row_cordinate,column_cordinate]
             spots_taken.insert(0,cordinate_pair)
             self.current_player = "Player"
+
 
 
             

@@ -8,8 +8,12 @@ def main():
     print("Welcome to Tic Tac Toe!")
     starting_player = input("Who will go first? Player or Computer? ex: 'Player' or 'Computer' ")
     new_game = game.Game(starting_player)
+    letters = ["A","B","C"]
     while new_game.game_over == False:
-        print(new_game.get_board())
+        if(new_game.get_current_player() == "Player"):
+            print("   1     2     3")
+            for i in range(len(new_game.get_board())):
+                print(letters[i]+str(new_game.get_board()[i]))
         new_game.make_move()
     start_over = input("Thanks for playing! Want to play again? ex: Yes/No")
     if start_over == "Yes":
