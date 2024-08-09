@@ -24,11 +24,15 @@ class Game():
     def change_board(self,row,column,symbol):
         """When a player makes a legal move this function changes the board to reflect this"""
         legal_moves = self.get_board()
-        print(legal_moves)
+        row = row-1
+        column = column-1
+        # print(legal_moves)
         current_row = legal_moves[row]
-        print(current_row)
+        # print(current_row)
         changed_board = current_row[:column]+[symbol]+current_row[column+1:]
-        print(changed_board)
+        # print(changed_board)
+        legal_moves = legal_moves[:row]+[changed_board]+legal_moves[row+1:]
+        print(legal_moves)
 
     def convert_letters_to_nums(self, row):
         """Converts ABC to 123"""
