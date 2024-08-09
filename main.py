@@ -14,10 +14,14 @@ def main():
             print("   1     2     3")
             for i in range(len(new_game.get_board())):
                 print(letters[i]+str(new_game.get_board()[i]))
-        new_game.make_move()
-    start_over = input("Thanks for playing! Want to play again? ex: Yes/No")
+        if new_game.make_move() == True:
+            print(new_game.get_current_player() + " Is the Winner")
+            break
+    start_over = input("Thanks for playing! Want to play again? ex: Yes/No ")
     if start_over == "Yes":
         main()
+    else:
+        print("Thanks for Playing!")
 
 
 if __name__ == "__main__":

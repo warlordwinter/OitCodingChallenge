@@ -17,6 +17,9 @@ class Game():
     def get_game_over(self):
         return self.get_game_over
     
+    def set_game_over(self,game_over):
+        self.game_over = game_over
+    
     def set_current_player(self, player):
         """Sets the current player"""
         self.current_player = player
@@ -66,10 +69,12 @@ class Game():
 
     def check_win(self):
         if self.current_player == "Player":
-            potential_winner = self.get_current_player()
-            potential_winner.get_winner()
+            potential_winner = self.get_player()
+            potential_winner.check_win_player()
+            if potential_winner.get_winner() == True:
+                self.set_game_over(True)
         else:
-            potential_winner = self.get_current_player()
+            potential_winner = self.get_player()
             potential_winner.get_winner()
 
 
@@ -93,6 +98,9 @@ class Game():
                 # print(moves)
                 row_cordinate = self.convert_letters_to_nums(row_cordinate)
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
+                self.check_win()
+                if self.game_over ==True:
+                    return True
                 self.current_player ="Computer"
 
         else:
@@ -108,6 +116,7 @@ class Game():
             spots_taken = computer.get_spots()
             cordinate_pair= [row_cordinate,column_cordinate]
             spots_taken.insert(0,cordinate_pair)
+            self.check_win()
             self.current_player = "Player"
 
 
