@@ -21,6 +21,9 @@ class Game():
         """Gets the Board"""
         return self.board
     
+    def set_board(self,board):
+        self.board = board
+    
     def change_board(self,row,column,symbol):
         """When a player makes a legal move this function changes the board to reflect this"""
         legal_moves = self.get_board()
@@ -32,7 +35,9 @@ class Game():
         changed_board = current_row[:column]+[symbol]+current_row[column+1:]
         # print(changed_board)
         legal_moves = legal_moves[:row]+[changed_board]+legal_moves[row+1:]
-        print(legal_moves)
+        # print(legal_moves)
+        self.set_board(legal_moves)
+
 
     def convert_letters_to_nums(self, row):
         """Converts ABC to 123"""
