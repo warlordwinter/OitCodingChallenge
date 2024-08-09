@@ -92,9 +92,19 @@ class Game():
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
                 self.current_player ="Computer"
         else:
-            moves =self.get_available_moves() #The computer will randomly grab a move
-
-            randint(0,len(moves))
+            moves =self.get_available_moves() #The computer will randomly grab a move and store it in it's taken moves list
+            index = randint(0,len(moves))
+            chosen_move = moves[index]
+            row_cordinate = chosen_move[0]
+            column_cordinate = chosen_move[1]
+            moves.remove([row_cordinate,column_cordinate])
+            row_cordinate=self.convert_letters_to_nums(row_cordinate)
+            self.change_board(row_cordinate,int(column_cordinate),symbol = "[O]")
+            computer = self.get_computer()
+            spots_taken = computer.get_spots()
+            cordinate_pair= [row_cordinate,column_cordinate]
+            spots_taken.insert(0,cordinate_pair)
+            self.current_player = "Player"
 
 
             
