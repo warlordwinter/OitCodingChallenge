@@ -7,10 +7,14 @@ class Game():
         self.avaliable_moves = [["A","1"],["A","2"],["A","3"],["B","1"],["B","2"], ["B","3"], ["C","1"],["C","2"],["C","3"]]
         self.player = player.Player()
         self.computer = player.Player()
+        self.game_over = False
     
     def get_current_player(self):
         """Gets the current player"""
         return self.current_player
+    
+    def get_game_over(self):
+        return self.get_game_over
     
     def set_current_player(self, player):
         """Sets the current player"""
@@ -60,7 +64,10 @@ class Game():
             print("Error with Letter Conversion")
 
     def check_win(self):
-        pass
+        if self.current_player == "Player":
+            potential_winner = self.get_current_player()
+            potential_winner.get_winner()
+
 
     
     def make_move(self):
@@ -82,6 +89,11 @@ class Game():
                 # print(moves)
                 row_cordinate = self.convert_letters_to_nums(row_cordinate)
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
+                self.current_player ="Computer"
+        else:
+            moves =self.get_available_moves() #The computer will randomly grab a move
+
+
             
             
 
