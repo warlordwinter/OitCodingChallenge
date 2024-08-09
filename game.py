@@ -50,8 +50,6 @@ class Game():
         else:
             print("Error with Letter Conversion")
 
-
-
     
     def make_move(self):
         """Makes a move on the board"""
@@ -62,6 +60,10 @@ class Game():
             moves = self.get_available_moves()
             if cordinate_pair in moves:
                 #print("True")
+                moves.remove([row_cordinate,column_cordinate])
+                print(moves)
                 row_cordinate = self.convert_letters_to_nums(row_cordinate)
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
+            
+
 
