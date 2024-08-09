@@ -1,9 +1,12 @@
+import player as player
 class Game():
     """This is the game object that holds the Tic Tac Toe game."""
     def __init__(self, current_player, board = None):
         self.current_player = current_player
         self.board = [["[]","[]","[]"],["[]","[]","[]"],["[]","[]","[]"]]
         self.avaliable_moves = [["A","1"],["A","2"],["A","3"],["B","1"],["B","2"], ["B","3"], ["C","1"],["C","2"],["C","3"]]
+        self.player = player.Player()
+        self.computer = player.Player()
     
     def get_current_player(self):
         """Gets the current player"""
@@ -23,6 +26,12 @@ class Game():
     
     def set_board(self,board):
         self.board = board
+
+    def get_player(self):
+        return self.player
+    
+    def get_computer(self):
+        return self.computer
     
     def change_board(self,row,column,symbol):
         """When a player makes a legal move this function changes the board to reflect this"""
@@ -50,6 +59,9 @@ class Game():
         else:
             print("Error with Letter Conversion")
 
+    def check_win(self):
+        pass
+
     
     def make_move(self):
         """Makes a move on the board"""
@@ -60,10 +72,17 @@ class Game():
             moves = self.get_available_moves()
             if cordinate_pair in moves:
                 #print("True")
+                player = self.get_player()
+                spots_taken = self.player.get_spots()
+                spots_taken.insert(0,cordinate_pair)
+                # print(spots_taken)
+                player.set_spots(spots_taken)
+                # print(player.get_spots())
                 moves.remove([row_cordinate,column_cordinate])
-                print(moves)
+                # print(moves)
                 row_cordinate = self.convert_letters_to_nums(row_cordinate)
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
+            
             
 
 
