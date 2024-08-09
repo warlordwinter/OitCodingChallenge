@@ -1,3 +1,4 @@
+from random import randint
 import player as player
 class Game():
     """This is the game object that holds the Tic Tac Toe game."""
@@ -92,6 +93,8 @@ class Game():
                 self.current_player ="Computer"
         else:
             moves =self.get_available_moves() #The computer will randomly grab a move
+
+            randint(0,len(moves))
 
 
             
