@@ -9,13 +9,21 @@ class Game():
         self.player = player.Player()
         self.computer = player.Player()
         self.game_over = False
+        self.tie_game = False
+
+    def get_tie(self):
+        """Finds if there is a tie game"""
+        return self.tie_game
+    
+    def set_tie(self):
+        self.tie_game = True
     
     def get_current_player(self):
         """Gets the current player"""
         return self.current_player
     
     def get_game_over(self):
-        return self.get_game_over
+        return self.game_over
     
     def set_game_over(self,game_over):
         self.game_over = game_over
@@ -46,13 +54,9 @@ class Game():
         legal_moves = self.get_board()
         row = row-1
         column = column-1
-        # print(legal_moves)
         current_row = legal_moves[row]
-        # print(current_row)
         changed_board = current_row[:column]+[symbol]+current_row[column+1:]
-        # print(changed_board)
         legal_moves = legal_moves[:row]+[changed_board]+legal_moves[row+1:]
-        # print(legal_moves)
         self.set_board(legal_moves)
 
 
@@ -77,6 +81,11 @@ class Game():
             potential_winner = self.get_player()
             potential_winner.get_winner()
 
+    def check_tie(self):
+        if len(self.get_available_moves()) == 0:
+            self.set_game_over(True)
+            self.set_tie_game()
+
 
     
     def make_move(self):
@@ -87,19 +96,19 @@ class Game():
             cordinate_pair = [row_cordinate,column_cordinate]
             moves = self.get_available_moves()
             if cordinate_pair in moves:
-                #print("True")
+
                 player = self.get_player()
                 spots_taken = self.player.get_spots()
                 spots_taken.insert(0,cordinate_pair)
-                # print(spots_taken)
+
                 player.set_spots(spots_taken)
-                # print(player.get_spots())
+
                 moves.remove([row_cordinate,column_cordinate])
-                # print(moves)
                 row_cordinate = self.convert_letters_to_nums(row_cordinate)
                 self.change_board(row_cordinate,int(column_cordinate),symbol = "[X]")
                 self.check_win()
-                if self.game_over ==True:
+                self.check_tie()
+                if self.get_game_over() ==True:
                     return True
                 self.current_player ="Computer"
 
@@ -117,6 +126,7 @@ class Game():
             cordinate_pair= [row_cordinate,column_cordinate]
             spots_taken.insert(0,cordinate_pair)
             self.check_win()
+            self.check_tie()
             self.current_player = "Player"
 
 
