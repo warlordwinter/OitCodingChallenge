@@ -28,6 +28,8 @@ class Player():
             self.winner = True
         elif ((["A","3"] in self.get_spots()) and (["B","3"] in self.get_spots()) and (["C","3"] in self.get_spots())):
             self.winner = True
+        elif ((["A","2"] in self.get_spots()) and (["B","2"] in self.get_spots()) and (["C","2"] in self.get_spots())):
+            self.winner = True
         else:
             self.winner = False
 
